@@ -65,7 +65,7 @@ class Product(models.Model):
 class Serving(models.Model):
     name = models.CharField(max_length=250)
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name='servings'
+        Product, on_delete=models.CASCADE, blank=True, related_name='servings'
     )
     nutrition = models.OneToOneField(
         Nutrition, on_delete=models.CASCADE, related_name='serving'
