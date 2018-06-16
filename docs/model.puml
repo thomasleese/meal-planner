@@ -1,0 +1,135 @@
+@startuml
+
+hide circle
+hide empty methods
+skinparam shadowing false
+skinparam dpi 300
+
+namespace Food {
+  class Nutrition {
+    calories
+    protein
+    fat
+    carbohydrates
+  }
+
+  class Serving {
+    size_value
+    size_unit
+    name
+  }
+
+  Serving --- Nutrition
+
+  class Food {
+    slug
+    singular_name
+    plural_name
+  }
+
+  class Category {
+    slug
+    name
+  }
+
+  Food }-- Category
+
+  class Tag {
+    slug
+    name
+  }
+
+  Food }-{ Tag
+
+  class Brand {
+    slug
+    name
+    colour
+  }
+
+  class Product {
+    slug
+    name
+    gtin
+    weight
+  }
+
+  Product }-- Brand
+  Product }-- Food
+  Product --{ Serving
+}
+
+namespace Planner {
+  class Category {
+    slug
+    name
+  }
+
+  class Meal {
+    date
+    multiplier
+  }
+
+  Meal }-- Category
+  Meal }-- Food.Serving
+}
+
+namespace Recipes {
+  class Recipe {
+    slug
+    name
+    description
+    preparation_time
+    cooking_time
+  }
+
+  Recipe --- Food.Serving
+  Recipe }-- Food.Food
+  Recipe }-{ Food.Tag
+
+  class Author {
+    slug
+    name
+  }
+
+  Recipe }-- Author
+
+  class Ingredient {
+    amount_value
+    amount_unit
+  }
+
+  Ingredient }-- Recipe
+  Ingredient }-- Food.Food
+
+  class Instruction {
+    order
+    text
+  }
+
+  Instruction }-- Recipe
+}
+
+namespace Shopping {
+  class List {
+    slug
+    name
+  }
+
+  class Item {
+    amount_value
+    amount_unit
+  }
+
+  Item }-- List
+  Item }-- Food.Food
+}
+
+class User {
+
+}
+
+User --{ Shopping.List
+User --{ Planner.Meal
+
+@enduml

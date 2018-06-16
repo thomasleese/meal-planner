@@ -21,3 +21,7 @@ This stores all the recipes that the app know about, using ingredients from the 
 ### [`shopping`](shopping)
 
 This stores all the shopping lists generated from the `planner` app or custom lists created by the user. It interacts with the supermarket APIs to automatically find prices and make orders.
+
+## Model
+
+![Model](docs/model.png)
